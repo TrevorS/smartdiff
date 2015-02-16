@@ -4,9 +4,9 @@ require 'smartdiff/line'
 require 'smartdiff/result'
 
 module Smartdiff
-  def self.load(file)
-    doc = Document.new(File.basename(file))
-    File.open(file, 'rb').each_with_object(doc).with_index do |(l, d), i|
+  def self.load(title, data)
+    doc = Document.new(title)
+    data.split("\n").each_with_object(doc).with_index do |(l, d), i|
       d.add(l.strip, i + 1)
     end
   end
